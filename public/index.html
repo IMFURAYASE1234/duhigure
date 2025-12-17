@@ -6,94 +6,332 @@
     <title>DUHIGURE MU MIRYANGO - Kibungo Sector</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .hero-section {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 80px 0;
+        :root {
+            --green-primary: #228B22;
+            --yellow-primary: #FFD700;
+            --green-dark: #1a6b1a;
         }
-        .feature-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
+        
+        /* Navbar */
         .navbar {
-            background-color: #1e3c72;
+            background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+        
+        /* Hero with side images */
+        .hero-section {
+            background: linear-gradient(135deg, var(--green-primary) 0%, var(--yellow-primary) 100%);
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-image-left, .hero-image-right {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .hero-image-left {
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-image-right {
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        /* Section with image cards */
+        .image-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .image-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%);
+        }
+        
+        .image-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .image-card-content {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            z-index: 1;
+        }
+        
+        /* Feature cards */
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--green-primary);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-left-color: var(--yellow-primary);
+        }
+        
+        /* Social feeds */
+        .social-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            height: 600px;
+            overflow: hidden;
+        }
+        
+        .social-feed-wrapper {
+            height: 540px;
+            overflow-y: auto;
+        }
+        
+        .social-feed-wrapper::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        .social-feed-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .social-feed-wrapper::-webkit-scrollbar-thumb {
+            background: var(--green-primary);
+            border-radius: 10px;
+        }
+        
+        /* Buttons */
         .btn-primary {
-            background-color: #2a5298;
+            background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%);
             border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(34,139,34,0.3);
+            transition: all 0.3s;
         }
+        
         .btn-primary:hover {
-            background-color: #1e3c72;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(34,139,34,0.4);
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--green-primary);
+            color: var(--green-primary);
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--green-primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Section styling */
+        .section-title {
+            color: var(--green-primary);
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--green-primary), var(--yellow-primary));
+            border-radius: 2px;
+        }
+        
+        /* Accordion */
+        .accordion-button:not(.collapsed) {
+            background-color: var(--green-primary);
+            color: white;
+        }
+        
+        .accordion-button:focus {
+            border-color: var(--yellow-primary);
+            box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-primary) 100%);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-image-left, .hero-image-right {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#">DUHIGURE MU MIRYANGO</a>
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="#">🏡 DUHIGURE MU MIRYANGO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#social">Social</a></li>
                     <li class="nav-item"><a class="nav-link" href="#guide">Guide</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-2" href="#system">Access System</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-warning text-dark ms-2 px-3" href="#system">Access System</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="hero-section text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-4">DUHIGURE MU MIRYANGO</h1>
-            <p class="lead mb-4">Family-Level Performance Contract System for Kibungo Sector</p>
-            <p class="mb-4">Empowering families to achieve collective success through shared responsibilities</p>
-            <a href="#system" class="btn btn-light btn-lg">Enter System</a>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=300&h=300&fit=crop" alt="African family" class="hero-image-left">
+        <img src="https://images.unsplash.com/photo-1488330890490-c291ecf62571?w=300&h=300&fit=crop" alt="African community" class="hero-image-right">
+        
+        <div class="container hero-content text-center">
+            <h1 class="display-3 fw-bold mb-4">DUHIGURE MU MIRYANGO</h1>
+            <p class="lead fs-3 mb-3">Building Stronger Families Through Shared Goals</p>
+            <p class="fs-5 mb-5">A community-driven platform helping Kibungo families grow together and succeed as one</p>
+            <a href="#system" class="btn btn-light btn-lg me-3">🚀 Enter System</a>
+            <a href="#about" class="btn btn-outline-light btn-lg">Learn More</a>
         </div>
     </section>
 
-    <section id="about" class="py-5">
+    <!-- Image Gallery Section -->
+    <section id="gallery" class="py-5 bg-light">
         <div class="container">
-            <h2 class="text-center mb-5">About DUHIGURE MU MIRYANGO</h2>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <h4>Program Overview</h4>
-                    <p>DUHIGURE MU MIRYANGO is a Performance Contract system designed at the family level. It enables families to establish shared commitments and track collective achievements while recognizing individual family member contributions.</p>
+            <h2 class="text-center section-title">Our Community</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="image-card" style="background-image: url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&h=400&fit=crop');">
+                        <div class="image-card-content">
+                            <h5 class="fw-bold">Family Unity</h5>
+                            <p class="mb-0">Growing together</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                    <h4>Kibungo Sector Initiative</h4>
-                    <p>This application supports Kibungo Sector's population development goals by providing a structured framework for family-level performance management and accountability.</p>
+                <div class="col-md-4">
+                    <div class="image-card" style="background-image: url('https://images.unsplash.com/photo-1562330453-12080eb30aca?w=600&h=400&fit=crop');">
+                        <div class="image-card-content">
+                            <h5 class="fw-bold">Community Support</h5>
+                            <p class="mb-0">Supporting each other</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="image-card" style="background-image: url('https://images.unsplash.com/photo-1591084728795-1149f32d9866?w=600&h=400&fit=crop');">
+                        <div class="image-card-content">
+                            <h5 class="fw-bold">Shared Success</h5>
+                            <p class="mb-0">Achieving together</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="text-center section-title">About DUHIGURE MU MIRYANGO</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4">
+                    <img src="https://images.unsplash.com/photo-1534200881039-e8c6abf46a88?w=600&h=400&fit=crop" 
+                         alt="African family" 
+                         class="img-fluid rounded-4 shadow">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h4 class="text-success fw-bold mb-3">Program Overview</h4>
+                    <p class="lead">DUHIGURE MU MIRYANGO is a Performance Contract system designed at the family level. It enables families to establish shared commitments and track collective achievements while recognizing individual family member contributions.</p>
+                    <h4 class="text-success fw-bold mb-3 mt-4">Kibungo Sector Initiative</h4>
+                    <p class="lead">This application supports Kibungo Sector's population development goals by providing a structured framework for family-level performance management and accountability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
     <section id="features" class="py-5 bg-light">
         <div class="container">
-            <h2 class="text-center mb-5">System Features</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card card p-4">
-                        <h5>Family Information</h5>
+            <h2 class="text-center section-title">System Features</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="text-center mb-3">
+                            <span class="fs-1">👨‍👩‍👧‍👦</span>
+                        </div>
+                        <h5 class="text-success fw-bold">Family Information</h5>
                         <p>Record complete information for each family member and manage all household data in one centralized system.</p>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card card p-4">
-                        <h5>Individual Performance Duties</h5>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="text-center mb-3">
+                            <span class="fs-1">📊</span>
+                        </div>
+                        <h5 class="text-success fw-bold">Individual Performance Duties</h5>
                         <p>Each family member has specific sub-performance duties that contribute to the family's overall Performance Contract (Imihigo).</p>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card card p-4">
-                        <h5>Shared Family Goals</h5>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="text-center mb-3">
+                            <span class="fs-1">🎯</span>
+                        </div>
+                        <h5 class="text-success fw-bold">Shared Family Goals</h5>
                         <p>Set family-level performance duties with shared responsibility among all family members for collective achievement.</p>
                     </div>
                 </div>
@@ -101,16 +339,58 @@
         </div>
     </section>
 
-    <section id="guide" class="py-5">
+    <!-- Social Media Section -->
+    <section id="social" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5">How to Use the System</h2>
+            <h2 class="text-center section-title">Stay Connected</h2>
+            <p class="text-center text-muted mb-5">Follow us for updates on community development and family success stories</p>
+            
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="social-container">
+                        <h4 class="text-success fw-bold mb-3 text-center">📘 Facebook Updates</h4>
+                        <div class="social-feed-wrapper">
+                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FRwandaGovernance&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" 
+                                    width="100%" 
+                                    height="500" 
+                                    style="border:none;overflow:hidden" 
+                                    scrolling="no" 
+                                    frameborder="0" 
+                                    allowfullscreen="true" 
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="social-container">
+                        <h4 class="text-success fw-bold mb-3 text-center">𝕏 Latest Tweets</h4>
+                        <div class="social-feed-wrapper">
+                            <a class="twitter-timeline" 
+                               data-height="500" 
+                               data-theme="light" 
+                               data-chrome="nofooter noborders"
+                               href="https://twitter.com/RwandaGov">
+                               Tweets by Rwanda Government
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Section -->
+    <section id="guide" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">How to Use the System</h2>
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="col-lg-8 mx-auto">
                     <div class="accordion" id="guideAccordion">
-                        <div class="accordion-item">
+                        <div class="accordion-item mb-3 border-0 shadow-sm">
                             <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#guide1">
-                                    Getting Started
+                                <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#guide1">
+                                    🚀 Getting Started
                                 </button>
                             </h2>
                             <div id="guide1" class="accordion-collapse collapse show" data-bs-parent="#guideAccordion">
@@ -119,10 +399,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
+                        <div class="accordion-item mb-3 border-0 shadow-sm">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#guide2">
-                                    Family Registration
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#guide2">
+                                    📝 Family Registration
                                 </button>
                             </h2>
                             <div id="guide2" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
@@ -131,10 +411,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
+                        <div class="accordion-item mb-3 border-0 shadow-sm">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#guide3">
-                                    Setting Performance Goals
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#guide3">
+                                    🎯 Setting Performance Goals
                                 </button>
                             </h2>
                             <div id="guide3" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
@@ -143,10 +423,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
+                        <div class="accordion-item border-0 shadow-sm">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#guide4">
-                                    Tracking Progress
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#guide4">
+                                    📈 Tracking Progress
                                 </button>
                             </h2>
                             <div id="guide4" class="accordion-collapse collapse" data-bs-parent="#guideAccordion">
@@ -161,44 +441,60 @@
         </div>
     </section>
 
-    <section id="system" class="py-5 bg-light">
-        <div class="container text-center">
-            <h2 class="mb-5">Access the System</h2>
-            <p class="mb-4">Ready to get started? Access the DUHIGURE MU MIRYANGO system to manage your family's performance contract.</p>
-            <a href="system.html" class="btn btn-primary btn-lg me-3">Enter System</a>
-            <button class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#helpModal">Need Help?</button>
+    <!-- System Access Section -->
+    <section id="system" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center mb-4">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=500&fit=crop" 
+                         alt="Team collaboration" 
+                         class="img-fluid rounded-circle shadow-lg" 
+                         style="max-width: 400px;">
+                </div>
+                <div class="col-md-6 text-center text-md-start">
+                    <h2 class="section-title text-start">Ready to Get Started?</h2>
+                    <p class="lead mb-4">Access the DUHIGURE MU MIRYANGO system to manage your family's performance contract and start building a stronger future together.</p>
+                    <a href="system.html" class="btn btn-primary btn-lg me-3 mb-3">🚀 Enter System</a>
+                    <button class="btn btn-outline-primary btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#helpModal">❓ Need Help?</button>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="bg-dark text-white py-4 text-center">
+    <!-- Footer -->
+    <footer class="py-5 text-center">
         <div class="container">
-            <p>&copy; 2024 DUHIGURE MU MIRYANGO - Kibungo Sector. All rights reserved.</p>
-            <p>For support: <a href="mailto:support@duhigure.rw" class="text-white">support@duhigure.rw</a></p>
+            <h4 class="mb-3">🏡 DUHIGURE MU MIRYANGO</h4>
+            <p class="mb-2">&copy; 2024 DUHIGURE MU MIRYANGO - Kibungo Sector. All rights reserved.</p>
+            <p class="mb-0">For support: <a href="mailto:support@duhigure.rw" class="text-warning text-decoration-none">support@duhigure.rw</a></p>
         </div>
     </footer>
 
+    <!-- Help Modal -->
     <div class="modal fade" id="helpModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Need Assistance?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title fw-bold">Need Assistance?</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
-                    <p>You can get help from:</p>
-                    <ul>
-                        <li>An Intore mu Ikoranabuhanga (technology facilitator) in your area</li>
-                        <li>Your local administrative authority</li>
-                        <li>Contact our support team at support@duhigure.rw</li>
+                <div class="modal-body p-4">
+                    <p class="lead">You can get help from:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">✅ An Intore mu Ikoranabuhanga (technology facilitator) in your area</li>
+                        <li class="mb-3">✅ Your local administrative authority</li>
+                        <li class="mb-3">✅ Contact our support team at <a href="mailto:support@duhigure.rw" class="text-success">support@duhigure.rw</a></li>
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Got it!</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=YOUR_APP_ID"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

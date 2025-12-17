@@ -1,14 +1,16 @@
-#node
-node_module/
+# Node
+node_modules/
 npm-debug.log
 
-#docker
-
+# Docker
 *.log
 
-#env
-
+# Kubernetes
 .env
+
+# OS
 .DS_Store
-Thumbs.debug
+Thumbs.db
+
+# Minikube / local
 .minikube/

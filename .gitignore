@@ -1,0 +1,14 @@
+#node
+node_module/
+npm-debug.log
+
+#docker
+
+*.log
+
+#env
+
+.env
+.DS_Store
+Thumbs.debug
+.minikube/
